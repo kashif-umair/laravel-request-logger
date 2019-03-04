@@ -1,5 +1,5 @@
 {
-  "name": "prettus/laravel-request-logger",
+  "name": "agelxnash/laravel-request-logger",
   "description": "HTTP request logger middleware for Laravel",
   "keywords": ["laravel", "logger", "request", "response"],
   "license": "MIT",
@@ -9,28 +9,29 @@
       "homepage": "http://andersonandra.de",
       "email": "contato@andersonandra.de",
       "role": "Developer"
+    },
+    {
+      "name": "Evgeniy Borisov",
+      "homepage": "https://agel-nash.ru",
+      "email": "laravel@agel-nash.ru",
+      "role": "Developer"
     }
   ],
-  "homepage": "http://andersao.github.io/laravel-request-logger",
+  "homepage": "https://github.com/AgelxNash/laravel-request-logger",
   "support": {
-    "email": "contato@andersonandra.de",
-    "issues":"https://github.com/andersao/laravel-request-logger/issues",
-    "wiki":"https://github.com/andersao/laravel-request-logger",
-    "source":"https://github.com/andersao/laravel-request-logger",
-    "docs": "http://andersao.github.io/laravel-request-logger"
+    "email": "laravel@agel-nash.ru",
+    "issues":"https://github.com/AgelxNash/laravel-request-logger/issues",
+    "source":"https://github.com/AgelxNash/laravel-request-logger"
   },
   "require": {
-    "php": ">=5.4.0",
+    "php": ">=7.1.0",
     "illuminate/support": "~5.0",
-    "illuminate/http": "~5.0",
-    "monolog/monolog": "~1.11"
-  },
-  "require-dev" : {
-    "laravel/framework": "~5.0"
+    "psr/log": "~1.0",
+    "symfony/http-foundation": "^4.1"
   },
   "autoload": {
     "psr-4": {
-      "Prettus\\RequestLogger\\": "src/Prettus/RequestLogger/"
+      "AgelxNash\\RequestLogger\\": "src/"
     }
   },
   "config": {
@@ -39,11 +40,8 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Prettus\\RequestLogger\\Providers\\LoggerServiceProvider"
+        "AgelxNash\\RequestLogger\\ServiceProvider"
       ]
-    },
-    "branch-alias": {
-      "dev-develop": "1.2-dev"
     }
   },
   "minimum-stability": "stable"

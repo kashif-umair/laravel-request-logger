@@ -1,12 +1,7 @@
-<?php namespace Prettus\RequestLogger\Helpers;
+<?php namespace AgelxNash\RequestLogger\Helpers;
 
 use Carbon\Carbon;
 
-/**
- * Class RequestInterpolation
- * @package Prettus\RequestLogger\Helpers
- * @author Anderson Andrade <contato@andersonandra.de>
- */
 class RequestInterpolation extends BaseInterpolation {
 
     /**
@@ -77,6 +72,8 @@ class RequestInterpolation extends BaseInterpolation {
             return $this->request->$method();
         } elseif( isset($_SERVER[$server_var]) ) {
             return $this->request->server($server_var);
+        } elseif (method_exists($this, $method)) {
+            return $this->$method();
         } else {
             $matches = [];
             preg_match("/([-\w]{2,})(?:\[([^\]]+)\])?/", $variable, $matches);
@@ -115,5 +112,10 @@ class RequestInterpolation extends BaseInterpolation {
         }
 
         return $raw;
+    }
+
+    public function requestData()
+    {
+        return json_encode($this->request->post());
     }
 }
