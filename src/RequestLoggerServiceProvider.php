@@ -1,4 +1,6 @@
-<?php namespace AgelxNash\RequestLogger;
+<?php
+
+namespace Royalcms\Laravel\RequestLogger;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
