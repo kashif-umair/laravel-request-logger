@@ -25,6 +25,11 @@ class Middleware
 
     public function terminate(HttpFoundation\Request $request, HttpFoundation\Response $response)
     {
+        $enabled = config('request-logger.enabled', false);
+        if ($enabled === false) {
+            return ;
+        }
+
         if ($this->excluded($request) === false) {
             $this->configureRequestLogger();
             $this->requestLogger->handle($request, $response);
