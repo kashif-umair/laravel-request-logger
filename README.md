@@ -40,22 +40,22 @@ php artisan vendor:publish --provider="Royalcms\Laravel\RequestLogger\RequestLog
 In your `config/request-logger.php` file, you can change configuration for logger
 
 ```php
- 'logger' => [
-    'enabled'   => true,
-    'handlers'  => ['Royalcms\Laravel\RequestLogger\Handler\HttpLoggerHandler'],
-    'file'      => storage_path("logs/http.log"),
-    'level'     => 'info',
-    'format'    => 'common'
-]
+'enabled'   => true,
+'format' => 'default',
+'log' => [
+    'channel' => 'daily', //You can create a custom log channel
+    'level' => 'info',
+],
+'exclude' => []
 ```
 
 | Property | Type       | Default Value                                         | Description |
 |----------|------------|-------------------------------------------------------|-------------|
 | enabled  | boolean    | true                                                  | Enable or disable log http |
-| handlers | array      | ['Prettus\RequestLogger\Handler\HttpLoggerHandler']   | Instance of the `Monolog\Handler\HandlerInterface`. (See more)[https://github.com/Seldaek/monolog#handlers] |
-| file     | string     | storage_path("logs/http.log")                         | If you are using `Royalcms\Laravel\RequestLogger\Handler\HttpLoggerHandler`, you can set the file will be saved walk logs |
-| level    | string     | info                                                  | Level logger write: [notice, info, debug, emergency, alert, critical, error, warning] |
-| format   | string     | common                                                | Format for the log record |
+| format   | string     | default                                               | Format for the log record |
+| log/channel     | string     | daily                                          | You can create a custom log channel |
+| log/level    | string     | info                                              | Level logger write: [notice, info, debug, emergency, alert, critical, error, warning] |
+| exclude | array      | ['/xxx/']                                              | The Request Path |
 
 
 
@@ -68,9 +68,9 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | {method}       | Get the request method.                                               | PUT                                     |
 | {root}         | Get the root URL for the application.                                 | http://prettus.local                    |
 | {url}          | Get the URL (no query string) for the request.                        | http://prettus.local/users              |
-| {full-url}      | Get the full URL for the request.                                     | http://prettus.local/users?search=lorem |
+| {full-url}      | Get the full URL for the request.                                    | http://prettus.local/users?search=lorem |
 | {path}         | Get the current path info for the request.                            | /users                                  |
-| {decoded-path}  | Get the current encoded path info for the request.                    | /users                                  |
+| {decoded-path}  | Get the current encoded path info for the request.                   | /users                                  |
 | {remote-addr}  | Returns the client IP address.                                        | 192.168.10.1                            |
 | {format}       | Gets the format associated with the mime type.                        | html                                    |
 | {scheme}       | Gets the request's scheme.                                            | http                                    |
@@ -88,13 +88,15 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | {server[*KEY*]}   | $_SERVER Server and execution environment information (See more)[http://php.net/manual/reserved.variables.server.php]          |              |
 | {req[*HEADER*]}   | Request Header values |              |
 | {res[*HEADER*]}   | Response Header values |              |
-
+| {request-data}   | Response Body values |              |
 
 
 #### Default formats
 
 | Name      | Format                                                                                                                                |
 |-----------|---------------------------------------------------------------------------------------------------------------------------------------|
+| default   | {remote-addr} HTTP/{http-version} {method} "{full-url}" {status} "{user-agent}" {content-length} {referer} {request-data}     |
+| default2  | {ip} {remote_user} {date} {method} {url} HTTP/{http_version} {status} {content-length} {referer} {user_agent}     |
 | combined  | {remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length} "{referer}" "{user-agent}"     |
 | common    | {remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length}                                 |
 | dev       | {method} {url} {status} {response-time} ms - {content-length}                                                                         |
