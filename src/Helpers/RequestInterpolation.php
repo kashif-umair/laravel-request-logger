@@ -45,13 +45,13 @@ class RequestInterpolation extends BaseInterpolation
             "referrer",
             'body'
         ], [
-            "ip",
-            "getScheme",
-            "getPort",
-            "getQueryString",
-            "getUser",
-            "referer",
-            "getContent"
+//            "ip",
+//            "getScheme",
+//            "getPort",
+//            "getQueryString",
+//            "getUser",
+//            "referer",
+//            "getContent"
         ], Str::camel($variable));
 
         $server_var = str_replace([
@@ -74,11 +74,14 @@ class RequestInterpolation extends BaseInterpolation
 
         if ( method_exists($this->request, $method) ) {
             return $this->request->$method();
-        } elseif( isset($_SERVER[$server_var]) ) {
+        }
+        elseif( isset($_SERVER[$server_var]) ) {
             return $this->request->server($server_var);
-        } elseif (method_exists($this, $method)) {
+        }
+        elseif (method_exists($this, $method)) {
             return $this->$method();
-        } else {
+        }
+        else {
             $matches = [];
             preg_match("/([-\w]{2,})(?:\[([^\]]+)\])?/", $variable, $matches);
 
