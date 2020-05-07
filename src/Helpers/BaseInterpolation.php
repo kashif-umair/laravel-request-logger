@@ -1,6 +1,8 @@
-<?php namespace AgelxNash\RequestLogger\Helpers;
+<?php
 
-use AgelxNash\RequestLogger\Contracts\Interpolable;
+namespace Royalcms\Laravel\RequestLogger\Helpers;
+
+use Royalcms\Laravel\RequestLogger\Contracts\Interpolable;
 
 use Symfony\Component\HttpFoundation;
 

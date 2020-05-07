@@ -1,8 +1,11 @@
-<?php namespace AgelxNash\RequestLogger\Helpers;
+<?php
+
+namespace Royalcms\Laravel\RequestLogger\Helpers;
 
 use Carbon\Carbon;
 
-class RequestInterpolation extends BaseInterpolation {
+class RequestInterpolation extends BaseInterpolation
+{
 
     /**
      * @param string $text
@@ -48,7 +51,7 @@ class RequestInterpolation extends BaseInterpolation {
             "getUser",
             "referer",
             "getContent"
-        ],camel_case($variable));
+        ], camel_case($variable));
 
         $server_var = str_replace([
             "ACCEPT",
@@ -68,7 +71,7 @@ class RequestInterpolation extends BaseInterpolation {
             "HTTP_USER_AGENT"
         ], strtoupper(str_replace("-","_", $variable)) );
 
-        if( method_exists($this->request, $method) ) {
+        if ( method_exists($this->request, $method) ) {
             return $this->request->$method();
         } elseif( isset($_SERVER[$server_var]) ) {
             return $this->request->server($server_var);
@@ -86,7 +89,7 @@ class RequestInterpolation extends BaseInterpolation {
                 }
             }
 
-            if( is_array($matches) && count($matches) == 3 ) {
+            if ( is_array($matches) && count($matches) == 3 ) {
                 list($line, $var, $option) = $matches;
 
                 switch(strtolower($var)) {

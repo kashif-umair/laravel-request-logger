@@ -1,4 +1,6 @@
-<?php namespace AgelxNash\RequestLogger\Helpers;
+<?php
+
+namespace Royalcms\Laravel\RequestLogger\Helpers;
 
 class ResponseInterpolation extends BaseInterpolation
 {

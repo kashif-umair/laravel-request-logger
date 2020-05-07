@@ -1,4 +1,6 @@
-<?php namespace AgelxNash\RequestLogger;
+<?php
+
+namespace Royalcms\Laravel\RequestLogger;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation;

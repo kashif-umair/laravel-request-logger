@@ -1,6 +1,9 @@
-<?php namespace AgelxNash\RequestLogger\Contracts;
+<?php
 
-interface Interpolable {
+namespace Royalcms\Laravel\RequestLogger\Contracts;
+
+interface Interpolable
+{
 
     /**
      * @param string $text
