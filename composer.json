@@ -1,9 +1,15 @@
 {
-  "name": "agelxnash/laravel-request-logger",
+  "name": "royalcms/laravel-request-logger",
   "description": "HTTP request logger middleware for Laravel",
   "keywords": ["laravel", "logger", "request", "response"],
   "license": "MIT",
   "authors": [
+    {
+      "name": "Royal Wang",
+      "homepage": "http://royalcms.cn",
+      "email": "hxroyal@gmail.com",
+      "role": "Developer"
+    },
     {
       "name": "Anderson Andrade",
       "homepage": "http://andersonandra.de",
@@ -17,21 +23,21 @@
       "role": "Developer"
     }
   ],
-  "homepage": "https://github.com/AgelxNash/laravel-request-logger",
+  "homepage": "https://github.com/royalcms/laravel-request-logger",
   "support": {
-    "email": "laravel@agel-nash.ru",
-    "issues":"https://github.com/AgelxNash/laravel-request-logger/issues",
-    "source":"https://github.com/AgelxNash/laravel-request-logger"
+    "email": "hxroyal@gmail.com",
+    "issues":"https://github.com/royalcms/laravel-request-logger/issues",
+    "source":"https://github.com/royalcms/laravel-request-logger"
   },
   "require": {
     "php": ">=7.1.0",
-    "illuminate/support": "~5.0",
-    "psr/log": "~1.0",
-    "symfony/http-foundation": "^4.1"
+    "illuminate/support": "^5.0||^6.0|^7.0",
+    "psr/log": "^1.0",
+    "symfony/http-foundation": "^4.1|^5.0"
   },
   "autoload": {
     "psr-4": {
-      "AgelxNash\\RequestLogger\\": "src/"
+      "Royalcms\\Laravel\\RequestLogger\\": "src/"
     }
   },
   "config": {
@@ -40,7 +46,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "AgelxNash\\RequestLogger\\ServiceProvider"
+        "Royalcms\\Laravel\\RequestLogger\\RequestLoggerServiceProvider"
       ]
     }
   },
