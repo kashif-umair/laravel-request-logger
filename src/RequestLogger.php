@@ -7,19 +7,25 @@ use Symfony\Component\HttpFoundation;
 
 class RequestLogger
 {
-    /** @var Helpers\RequestInterpolation */
+    /**
+     * @var Helpers\RequestInterpolation
+     */
     protected $requestInterpolation;
 
-    /** @var Helpers\ResponseInterpolation */
+    /**
+     * @var Helpers\ResponseInterpolation
+     */
     protected $responseInterpolation;
 
-    /** @var \Illuminate\Log\LogManager */
+    /**
+     * @var \Psr\Log\LoggerInterface \Illuminate\Log\LogManager
+     */
     protected $logManager;
 
     protected $context = 'RESPONSE';
     protected $level = 'info';
     protected $channel = 'daily';
-    protected $format = '{remote-addr} HTTP/{http-version} {method} "{fullUrl}" {status} "{user-agent}" {contentLength} {REFERER} {requestData}';
+    protected $format = 'default';
 
     public function __construct(
         Helpers\RequestInterpolation $requestInterpolation,
@@ -85,7 +91,7 @@ class RequestLogger
      */
     public function getFormat(): string
     {
-        return $this->format;
+        return (new LoggerFormatter())->format($this->format);
     }
 
     /**

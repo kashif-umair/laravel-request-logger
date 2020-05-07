@@ -37,10 +37,23 @@ class LoggerFormatter
         }
     }
 
-    public function format()
+    /**
+     * @param $type
+     * @param $format
+     */
+    public function addFormat($type, $format)
     {
-        if (Arr::has($this->formats, $this->type)) {
-            $format = Arr::get($this->formats, $this->type);
+        $this->formats[$type] = $format;
+    }
+
+    /**
+     * @param $type
+     * @return mixed|string
+     */
+    public function format($type = null)
+    {
+        if (Arr::has($this->formats, $type)) {
+            $format = Arr::get($this->formats, $type, $this->type);
         }
         else {
             $format = $this->type;

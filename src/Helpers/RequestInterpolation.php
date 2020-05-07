@@ -2,7 +2,8 @@
 
 namespace Royalcms\Laravel\RequestLogger\Helpers;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class RequestInterpolation extends BaseInterpolation
 {
@@ -14,7 +15,7 @@ class RequestInterpolation extends BaseInterpolation
     public function interpolate($text)
     {
 
-        $variables = explode(" ",$text);
+        $variables = explode(" ", $text);
 
         foreach( $variables as $variable ) {
             $matches = [];
@@ -51,7 +52,7 @@ class RequestInterpolation extends BaseInterpolation
             "getUser",
             "referer",
             "getContent"
-        ], camel_case($variable));
+        ], Str::camel($variable));
 
         $server_var = str_replace([
             "ACCEPT",
@@ -81,7 +82,7 @@ class RequestInterpolation extends BaseInterpolation
             $matches = [];
             preg_match("/([-\w]{2,})(?:\[([^\]]+)\])?/", $variable, $matches);
 
-            if( count($matches) == 2 ) {
+            if ( count($matches) == 2 ) {
                 switch($matches[0]) {
                 case "date":
                     $matches[] = "clf";
@@ -96,12 +97,20 @@ class RequestInterpolation extends BaseInterpolation
                     case "date":
 
                         $formats = [
-                            "clf"=>Carbon::now()->format("d/M/Y:H:i:s O"),
-                            "iso"=>Carbon::now()->toIso8601String(),
-                            "web"=>Carbon::now()->toRfc1123String()
+                            "clf" => Carbon::now()->format("d/M/Y:H:i:s O"),
+                            "iso" => Carbon::now()->toIso8601String(),
+                            "web" => Carbon::now()->toRfc1123String()
                         ];
 
                         return isset($formats[$option]) ? $formats[$option] : Carbon::now()->format($option);
+                        break;
+
+                    case "request-content":
+                        if ($data = $this->request->all())
+                            return json_encode($data);
+                        else
+                            return "";
+                        break;
 
                     case "req":
                     case "header":

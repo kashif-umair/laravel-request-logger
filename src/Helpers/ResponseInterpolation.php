@@ -2,6 +2,8 @@
 
 namespace Royalcms\Laravel\RequestLogger\Helpers;
 
+use Illuminate\Support\Str;
+
 class ResponseInterpolation extends BaseInterpolation
 {
     /**
@@ -41,7 +43,7 @@ class ResponseInterpolation extends BaseInterpolation
             "getProtocolVersion",
             "getStatusCode",
             "getStatusCode"
-        ], camel_case($variable));
+        ], Str::camel($variable));
 
         if (method_exists($this->response, $method)) {
             return $this->response->$method();
@@ -71,19 +73,8 @@ class ResponseInterpolation extends BaseInterpolation
      */
     public function getContentLength()
     {
-
-        $path = storage_path("framework" . DIRECTORY_SEPARATOR . "temp");
-
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
-        }
-
         $content = $this->response->getContent();
-        $file = $path . DIRECTORY_SEPARATOR . "response-" . time();
-        file_put_contents($file, $content);
-        $content_length = filesize($file);
-        unlink($file);
-
-        return $content_length;
+        return strlen($content);
     }
+
 }
