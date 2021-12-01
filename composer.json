@@ -1,5 +1,5 @@
 {
-  "name": "royalcms/laravel-request-logger",
+  "name": "kashif-umair/laravel-request-logger",
   "description": "HTTP request logger middleware for Laravel",
   "keywords": ["laravel", "logger", "request", "response"],
   "license": "MIT",
@@ -23,11 +23,11 @@
       "role": "Developer"
     }
   ],
-  "homepage": "https://github.com/royalcms/laravel-request-logger",
+  "homepage": "https://github.com/kashif-umair/laravel-request-logger",
   "support": {
     "email": "hxroyal@gmail.com",
-    "issues":"https://github.com/royalcms/laravel-request-logger/issues",
-    "source":"https://github.com/royalcms/laravel-request-logger"
+    "issues":"https://github.com/kashif-umair/laravel-request-logger/issues",
+    "source":"https://github.com/kashif-umair/laravel-request-logger"
   },
   "require": {
     "php": ">=7.1.0",
